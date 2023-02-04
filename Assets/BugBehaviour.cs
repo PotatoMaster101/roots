@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BugBehaviour : MonoBehaviour
 {
@@ -14,6 +13,14 @@ public class BugBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Move slightly away from the wall
+        transform.position += MovementDirection * MovementSpeed * Time.deltaTime;
+
+        // Workaround to trigger collision again if we are stuck in a corner
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = true;
+
+        Random.InitState(System.DateTime.Now.Millisecond);
         switch(Random.Range(1, 5))
         {
             case 1:
