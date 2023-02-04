@@ -14,7 +14,7 @@ public class BugBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-    switch(Random.Range(1, 5))
+        switch(Random.Range(1, 5))
         {
             case 1:
                 MovementDirection = Vector3.left;
