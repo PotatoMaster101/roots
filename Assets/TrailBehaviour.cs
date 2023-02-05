@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class TrailBehaviour : MonoBehaviour
 {
     public const float MovementSpeed = 3;
     public Vector3 PreviousPosition { get; set; }
-    public Vector3 PreviousTrailPosition { get; set; } = new Vector3(100,100,100);
-    public GameObject trailPrefab;
 
     // Update is called once per frame
     void Update()
@@ -30,18 +28,5 @@ public class PlayerBehaviour : MonoBehaviour
     void SpawnTrail()
     {
         Debug.Log($"Moved: {PreviousPosition} to {transform.position}");
-        if (Vector3.Distance(PreviousTrailPosition, transform.position) > 3)
-        {
-            Instantiate(trailPrefab, PreviousTrailPosition, Quaternion.identity);
-            PreviousTrailPosition = transform.position;
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-      if (collision.gameObject.tag == "Trail")
-      {
-          Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-      }
     }
 }

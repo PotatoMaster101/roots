@@ -15,9 +15,17 @@ public class BugBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Player")
+        {
             OnCollidingPlayer(collision);
+        }
+        else if (collision.gameObject.tag == "Trail")
+        {
+            OnCollidingRoot(collision);
+        }
         else
+        {
             OnCollidingRock(collision);
+        }
     }
 
     void OnCollidingRock(Collision2D collision)
@@ -49,6 +57,11 @@ public class BugBehaviour : MonoBehaviour
 
     void OnCollidingPlayer(Collision2D collision)
     {
-        SceneManager.LoadScene("GameOverScene");
+        SceneManager.LoadScene("GameOverSceneLose");
+    }
+
+    void OnCollidingRoot(Collision2D collision)
+    {
+        SceneManager.LoadScene("GameOverSceneLose");
     }
 }
