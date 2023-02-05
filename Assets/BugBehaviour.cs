@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BugBehaviour : MonoBehaviour
 {
@@ -48,6 +49,6 @@ public class BugBehaviour : MonoBehaviour
 
     void OnCollidingPlayer(Collision2D collision)
     {
-
+        SceneManager.LoadScene("GameOverScene");
     }
 }
