@@ -1,10 +1,10 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class BugBehaviour : MonoBehaviour
 {
     public const float MovementSpeed = 3;
     public Vector3 MovementDirection = Vector3.left;
+
     // Update is called once per frame
     void Update()
     {
@@ -12,6 +12,14 @@ public class BugBehaviour : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+            OnCollidingPlayer(collision);
+        else
+            OnCollidingRock(collision);
+    }
+
+    void OnCollidingRock(Collision2D collision)
     {
         // Move slightly away from the wall
         transform.position += MovementDirection * MovementSpeed * Time.deltaTime;
@@ -36,5 +44,10 @@ public class BugBehaviour : MonoBehaviour
                 MovementDirection = Vector3.down;
                 break;
         }
+    }
+
+    void OnCollidingPlayer(Collision2D collision)
+    {
+
     }
 }
